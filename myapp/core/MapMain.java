@@ -1,56 +1,37 @@
 package myapp.core;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Collection;
+import java.util.HashMap;
 
 public class MapMain {
     public static void main(String[] args) {
 
-        List<String> names = new LinkedList<>();
-        names.add("fred");
-        names.add("barney");
-        names.add("wilma");
-        names.add("betty");
+        BankAccount fred = new BankAccount("fred");
+        BankAccount barney = new BankAccount("barney");
+        BankAccount wilma = new BankAccount("wilma");
+        BankAccount betty = new BankAccount("betty");
 
+        // Create a simple Map
         Map<String, BankAccount> accts = new HashMap<>();
-        BankAccount acct = new BankAccount();
+        accts.put(fred.getAccountName(), fred);
+        accts.put(barney.getAccountName(), barney);
+        accts.put(wilma.getAccountName(), wilma);
+        accts.put(betty.getAccountName(), betty);
 
-        for (int i = 0; i < names.size(); i++) {
+        System.out.printf("size: %d\n", accts.size());
+        System.out.printf("has fred: %b\n", accts.containsKey(fred.getAccountName()));
+        System.out.printf("has pebbles: %b\n", accts.containsKey("pebbles"));
 
-            BankAccount acctId = new BankAccount();
-            accts.put(acct.getAccountNumber(), acct);
-        }
-
-        
-        // BankAccount barney = new BankAccount("barney");
-        // BankAccount wilma = new BankAccount("wilma");
-        // BankAccount betty = new BankAccount("betty");
-
-        // create a simple map
-        
-        // accts.put(fred.getAccountNumber(), fred);
-        // accts.put(barney.getAccountNumber(), barney);
-
-        System.out.printf("the size of the map: %d\n" , accts.size());
-        //System.out.printf("has fred account number: %b\n" , accts.containsKey(acctId.getAccountNumber()));
-
-        Set<String> acctNums = accts.keySet();
+        Set<String> keys = accts.keySet();
         Collection<BankAccount> values = accts.values();
 
-        
-        //for each loop use to iterate collections and keys
-        for (String acctId: acctNums) {
+        BankAccount acct;
+        for (String acctId: keys) {
             acct = accts.get(acctId);
-            System.out.printf("acctid = %s, name = %s\n" , acctId, acct.getAccountName());
+            System.out.printf("acctid = %s, name = %s\n", acctId, acct.getAccountName());
         }
-
-
-
-
     }
 }
 
